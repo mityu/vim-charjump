@@ -1,0 +1,102 @@
+*charjump.txt*		Yet another f motion to jump to word boundary
+
+Author: mityu
+License: MIT License
+==============================================================================
+CONTENTS						*charjump-contents*
+
+INTRODUCTION						|charjump-introduction|
+REQUIREMENTS						|charjump-requirements|
+MAPPINGS						|charjump-mappings|
+EXAMPLE							|charjump-example|
+
+
+==============================================================================
+INTRODUCTION					*charjump-introduction*
+
+*charjump.vim* provides |f|, |F|, |t|, |T|, |;|, and |,| motion alternate to
+make it easy to jump characters on word boundary.  E.g.:
+
+	With builtin f motion~
+		|Witch on the holy night
+			|
+			|  Type "ft"
+			|
+			v
+		Wi|tch on the holy night
+		  ^
+		  |
+		  +------- Cursor moves to here, as this is the first "t".
+
+	With alternate f motion~
+		|Witch on the holy night
+			|
+			|  Type "ft"
+			|
+			v
+		Witch on |the holy night
+		  ^      ^
+		  |      |
+		  |      +---- Cursor moves to here, as this is the first "t"
+		  |            on word boundary.
+		  |
+		  +------- This "t" is jumped over since this "t" is not on
+		           word boundary.
+
+==============================================================================
+REQUIREMENTS					*charjump-requirements*
+
+Vim 9.1 or later.
+
+==============================================================================
+MAPPINGS					*charjump-mappings*
+
+					*<Plug>(charjump-inclusive-forward)*
+					*<Plug>(charjump-inclusive-backward)*
+					*<Plug>(charjump-exclusive-forward)*
+					*<Plug>(charjump-exclusive-backward)*
+<Plug>(charjump-inclusive-forward){char}	The |f| motion alternative.
+<Plug>(charjump-inclusive-backward){char}	The |F| motion alternative.
+<Plug>(charjump-exclusive-forward){char}	The |t| motion alternative.
+<Plug>(charjump-exclusive-backward){char}	The |T| motion alternative.
+	Jump to [count]'th occurrence of {char} at certain position on the
+	right.  These mappings behave a bit differently depending on {char}:
+	- lower-cased alphabet:
+	  	Jumps to upper-cased or lower-cased {char} on word boundary.
+	- upper-cased alphabet:
+	  	Jumps to {char} on word boundary.  Skips any lower-cased
+		{char}s.
+	- the others (e.g. signs):
+		Jumps to {char}.  In this case these mappings works with
+		compatibility to |f|{char}, |F|{char}, etc.
+	- <C-v>{char}
+		Jumps to {char}.  This is compatible to |f|{char}, |F|{char},
+		etc.
+	- <C-k>{char1}{char2}
+	  	Use to specify a character to jump to using |digraph|s.  This
+		is compatible to type <C-k>{char1}{char2} after |f|, |F|, etc.
+
+					*<Plug>(charjump-repeat-obverse)*
+					*<Plug>(charjump-repeat-reverse)*
+<Plug>(charjump-repeat-obverse)		The |;| motion alternative.
+<Plug>(charjump-repeat-reverse)		The |,| motion alternative.
+	Repeat [count] times of the latest motion of
+	|<Plug>(charjump-inclusive-forward)|,
+	|<Plug>(charjump-inclusive-backward)|,
+	|<Plug>(charjump-exclusive-forward)| or
+	|<Plug>(charjump-exclusive-backward)|.
+
+==============================================================================
+EXAMPLE						*charjump-example*
+
+- Example configuration: >
+	noremap f <Plug>(charjump-inclusive-forward)
+	noremap F <Plug>(charjump-inclusive-backward)
+	noremap t <Plug>(charjump-exclusive-forward)
+	noremap T <Plug>(charjump-exclusive-backward)
+	noremap ; <Plug>(charjump-repeat-obverse)
+	noremap , <Plug>(charjump-repeat-reverse)
+<
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl
