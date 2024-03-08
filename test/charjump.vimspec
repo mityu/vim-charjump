@@ -1,3 +1,4 @@
+scriptencoding utf-8
 let s:assert = themis#helper('assert')
 call themis#helper('command').with(s:assert)
 call themis#func_alias(s:assert)
@@ -10,7 +11,6 @@ endfunction
 command -nargs=+ Normal execute 'normal' s:replace_termcodes(<q-args>)
 command -nargs=+ AssertCurpos call s:assert.equals(getcurpos()[1 : 2], <args>)
 
-" TODO: Test for f, F, t, T with {count}
 Describe charjump.vim
   Before all
     noremap f <Plug>(charjump-inclusive-forward)
