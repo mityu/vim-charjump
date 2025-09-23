@@ -46,7 +46,8 @@ make it easy to jump characters on word boundary.  E.g.:
 ==============================================================================
 REQUIREMENTS					*charjump-requirements*
 
-Vim 9.1 or later.
+- Vim 9.1 or later.
+- Neovim 0.11.0 or later.
 
 ==============================================================================
 MAPPINGS					*charjump-mappings*
@@ -89,13 +90,21 @@ MAPPINGS					*charjump-mappings*
 ==============================================================================
 EXAMPLE						*charjump-example*
 
-- Example configuration: >
+- Example configuration in Vim script: >vim
 	noremap f <Plug>(charjump-inclusive-forward)
 	noremap F <Plug>(charjump-inclusive-backward)
 	noremap t <Plug>(charjump-exclusive-forward)
 	noremap T <Plug>(charjump-exclusive-backward)
 	noremap ; <Plug>(charjump-repeat-obverse)
 	noremap , <Plug>(charjump-repeat-reverse)
+<
+- Example configuration in Neovim Lua: >lua
+	vim.keymap.set({ 'n', 'x', 'o' }, 'f', '<Plug>(charjump-inclusive-forward)')
+	vim.keymap.set({ 'n', 'x', 'o' }, 'F', '<Plug>(charjump-inclusive-backward)')
+	vim.keymap.set({ 'n', 'x', 'o' }, 't', '<Plug>(charjump-exclusive-forward)')
+	vim.keymap.set({ 'n', 'x', 'o' }, 'T', '<Plug>(charjump-exclusive-backward)')
+	vim.keymap.set({ 'n', 'x', 'o' }, ';', '<Plug>(charjump-repeat-obverse)')
+	vim.keymap.set({ 'n', 'x', 'o' }, ',', '<Plug>(charjump-repeat-reverse)')
 <
 
 ==============================================================================
