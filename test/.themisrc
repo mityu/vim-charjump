@@ -1,1 +1,8 @@
 set encoding=utf-8
+
+" Load lua plugin files explicitly here if run on Neovim because themis.vim
+" doesn't automatically load them.
+" cf: https://github.com/thinca/vim-themis/blob/355c34b1bff03a8fd3744e3ad2dd0627c0692716/autoload/themis/runner.vim#L282-L294
+if has('nvim')
+  runtime! plugin/charjump.lua
+endif

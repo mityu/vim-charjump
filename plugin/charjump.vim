@@ -1,3 +1,7 @@
+if has('nvim')
+  finish
+endif
+
 noremap <expr> <Plug>(charjump-inclusive-forward)  charjump#Jump(v:true, v:false)
 noremap <expr> <Plug>(charjump-inclusive-backward)  charjump#Jump(v:false, v:false)
 noremap <expr> <Plug>(charjump-exclusive-forward)  charjump#Jump(v:true, v:true)
