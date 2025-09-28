@@ -62,9 +62,9 @@ MAPPINGS					*charjump-mappings*
 	Jump to [count]'th occurrence of {char} at certain position on the
 	right.  These mappings behave a bit differently depending on {char}:
 	- lower-cased alphabet:
-	  	Jumps to upper-cased or lower-cased {char} on word boundary.
+		Jumps to upper-cased or lower-cased {char} on word boundary.
 	- upper-cased alphabet:
-	  	Jumps to {char} on word boundary.  Skips any lower-cased
+		Jumps to {char} on word boundary.  Skips any lower-cased
 		{char}s.
 	- the others (e.g. signs):
 		Jumps to {char}.  In this case these mappings works with
@@ -73,7 +73,7 @@ MAPPINGS					*charjump-mappings*
 		Jumps to {char}.  This is compatible to |f|{char}, |F|{char},
 		etc.
 	- <C-k>{char1}{char2}
-	  	Use to specify a character to jump to using |digraph|s.  This
+		Use to specify a character to jump to using |digraph|s.  This
 		is compatible to type <C-k>{char1}{char2} after |f|, |F|, etc.
 
 					*<Plug>(charjump-repeat-obverse)*
