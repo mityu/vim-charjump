@@ -155,8 +155,8 @@ end
 return {
   ---@param state State
   new = function(state)
-    local jumper = vim.deepcopy(Jumper)
-    jumper._state = vim.deepcopy(state)
-    return jumper
+    local obj = setmetatable({}, { __index = Jumper })
+    obj._state = vim.deepcopy(state)
+    return obj
   end,
 }
